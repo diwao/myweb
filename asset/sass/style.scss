@@ -1,0 +1,17 @@
+@import 'settings/var';
+@import 'settings/mixin';
+@import 'settings/base';
+
+
+//===================================
+// style
+//===================================
+
+.title {
+  font-size: $font-size-large;
+  font-weight: bold;
+}
+
+.text {
+  font-size: $font-size-default;
+}

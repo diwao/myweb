@@ -1,0 +1,23 @@
+@charset "UTF-8";
+html,
+body {
+  color: #333;
+  font-family: "Hiragino Kaku Gothic ProN", "YuGothic", "游ゴシック", "メイリオ", Meiryo, Roboto, Osaka, sans-serif;
+  font-size: 62.5%;
+  height: auto;
+  line-height: 1.8;
+  width: 100%; }
+
+a {
+  color: #a32a81;
+  text-decoration: none; }
+
+img {
+  vertical-align: bottom; }
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold; }
+
+.text {
+  font-size: 1.4rem; }

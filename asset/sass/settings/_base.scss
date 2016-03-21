@@ -1,0 +1,18 @@
+html,
+body {
+  color: $color-default;
+  font-family: $font-family-jp;
+  font-size: 62.5%;
+  height: auto;
+  line-height: $line-height-default;
+  width: 100%;
+}
+
+a {
+  color: $color-link;
+  text-decoration: none;
+}
+
+img {
+  vertical-align: bottom;
+}
