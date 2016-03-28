@@ -1,22 +1,7 @@
-// #mixins
-// サイト全体で扱うmixinを指定する
-
 //半分のサイズを設定
-@mixin setHalfSize($width, $height) {
+@mixin half($width, $height) {
 	width: ($width/2) + px;
 	height: ($height/2) + px;
-}
-@mixin setHalfTop($top) {
-	top: ($top/2) + px;
-}
-@mixin setHalfBottom($bottom) {
-	bottom: ($bottom/2) + px;
-}
-@mixin setHalfLeft($left) {
-	left: ($left/2) + px;
-}
-@mixin setHalfRight($right) {
-	right: ($right/2) + px;
 }
 
 @mixin full {
