@@ -12,8 +12,8 @@ gulp.task('default', function(){
       baseDir: './app/product/'
     }
   });
-  gulp.watch(['app/dev/sass/**/*.scss','app/dev/sass/**/_*.scss'],['sass']);
-  gulp.watch(['app/dev/ejs/**/*.ejs','!app/dev/ejs/**/_*.ejs'],['ejs']);
-  gulp.watch('app/dev/html/**/*.html',['html']);
-  // gulp.watch('app/dev/js/*.js',['eslint']);
+  gulp.watch(['app/src/sass/**/*.scss','app/src/sass/**/_*.scss'],['sass']);
+  gulp.watch(['app/src/ejs/**/*.ejs','!app/src/ejs/**/_*.ejs'],['ejs']);
+  gulp.watch('app/src/html/**/*.html',['html']);
+  // gulp.watch('app/src/js/*.js',['eslint']);
 });

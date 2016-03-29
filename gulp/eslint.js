@@ -4,8 +4,13 @@ var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 var eslint = require('gulp-eslint');
 
+var path = {
+  src: 'app/src/js/*.js',
+  dest: 'app/product/js'
+};
+
 gulp.task('eslint', function(){
-  gulp.src('app/dev/js/*.js')
+  gulp.src(path.src)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
@@ -17,7 +22,7 @@ gulp.task('eslint', function(){
         return;
       }
       gulp.src(result.filePath)
-        .pipe(gulp.dest('app/product/js'));
+        .pipe(gulp.dest(path.dest));
     }))
     .pipe(browserSync.stream())
     .pipe(notify({
