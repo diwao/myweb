@@ -14,4 +14,9 @@
 
 .text {
   font-size: $font-size-default;
+  transform: translate(50%);
+}
+
+html,body {
+  color: blue;
 }
