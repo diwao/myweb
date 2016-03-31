@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var htmlhint = require('gulp-htmlhint');
-var browserSync = require('browser-sync');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 
@@ -14,11 +13,11 @@ gulp.task('html', function(){
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
     .pipe(htmlhint('.htmlhintrc'))
-    .pipe(htmlhint.reporter()
+    .pipe(htmlhint.reporter())
     .pipe(notify({
       title: 'htmlhintを実行しました',
       message: new Date(),
       sound: 'Glass'
-    }))
+    })
   );
 });
