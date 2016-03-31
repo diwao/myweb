@@ -166,7 +166,7 @@ var cmn = {
       var cookies = document.cookie.split(';');
       for(var i = 0; i < cookies.length; i++){
         cookie = cookies[i].split('=');
-        cookie[0] = cookie[0].replace(/^\s+|\s+$/g, "");
+        cookie[0] = cookie[0].replace(/^\s+|\s+$/g, '');
         if(cookie[0] == name){
           return cookie[1];//調べたcookieがあればその値を返す
         }
@@ -176,26 +176,22 @@ var cmn = {
   },
   //画像のON・OFF
   imgOn : function() {
-    $(".imgOn").each(function(){
-      var src_off    = $(this).attr('src');
-      var src_on    = src_off.replace(/^(.+)_off(\.[^\.]+)$/, '$1_on$2');
-
-      if(cmn.ua.isSP){
-        $(this).off("mousedown touchstart mouseup touchend");
-        $(this).on("mousedown touchstart", function() {
-          this.src  = src_on;
-        });
-        $(this).on("mouseup touchend", function() {
-          this.src  = src_off;
-        });
-      } else {
-        $(this).off("mouseenter mouseleave");
-        $(this).hover(
-          function() { this.src  = src_on; },
-          function() { this.src  = src_off; }
-        );
-        $(this).css("cursor","pointer");
-      }
+    var onEvent,offEvent;
+    if(cmn.ua.isSP){
+      onEvent = 'touchstart';
+      offEvent = 'touchend';
+    } else {
+      onEvent = 'mouseover';
+      offEvent = 'mouseleave';
+    }
+    $('html').on(onEvent,'.imgOn',function(){
+      var src = $(this).attr('src');
+      var srcOn = src.replace(/^(.+)_off(\.[^\.]+)$/, '$1_on$2');
+      $(this).attr('src',srcOn);
+    }).on(offEvent,'.imgOn',function(){
+      var src = $(this).attr('src');
+      var srcOff = src.replace(/^(.+)_on(\.[^\.]+)$/, '$1_off$2');
+      $(this).attr('src',srcOff);
     });
   },
   //pxを抜く
@@ -203,7 +199,7 @@ var cmn = {
     if(str === undefined){
       str = 0;
     }
-    str = str.replace("px","");
+    str = str.replace('px','');
     return parseInt(str,10);
   },
   //FBシェア
@@ -249,9 +245,9 @@ var cmn = {
   },
   // カンマ区切り数値
   commaSeparatedValue : function(value) {
-    var arr = value.toString().split(".");
+    var arr = value.toString().split('.');
     arr[0] = arr[0].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-    return arr.join(".");
+    return arr.join('.');
   },
   // 現在日付の月日を4文字で取得
   getMMDD : function() {
@@ -277,7 +273,7 @@ var cmn = {
     var style = document.defaultView.getComputedStyle(elem,'');
     var value = style[css];
     //pxを抜く
-    value  = value.replace("px","");
+    value  = value.replace('px','');
     return parseFloat(value,10);
   }
 };

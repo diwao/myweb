@@ -1,4 +1,10 @@
 {
+  "globals": {
+    "$": true,
+    "def": true,
+    "cmn": true,
+    "FB": true
+  },
   "extends": "eslint:recommended",
   "env": {
     "browser": true
@@ -8,9 +14,9 @@
     "no-alert": 1, //アラートを使用している
     "quotes": [1, "single"], //シングルクオートを使用していない
     "consistent-return": 1, //関数の戻り値に何も指定していない
-    "default-case": 1, //switch文でdefaultが設定されていない
+    "default-case": 2, //switch文でdefaultが設定されていない
     "eqeqeq": 1, //「===, !==」ではなく「==,!=」を使用している
     "camelcase": [2, {"properties": "always"}], //キャメルケースを使用していない
-    "no-unused-vars": 1 //使用していない変数がある
+    "no-unused-vars": 2 //使用していない変数がある
   }
 }

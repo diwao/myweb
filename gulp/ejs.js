@@ -5,16 +5,16 @@ var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 
 var datas = {
-  title: 'My website template',
-  author: 'diwao',
-  description: 'サイトの説明が入ります',
-  keywords: 'web,gulp',
+  title: 'サイトタイトル',
+  author: '著者名',
+  description: '説明',
+  keywords: 'キーワード',
   favicon: '/asset/image/favicon.ico',
   og: {
-    url: 'http://google.com',
-    image: 'http://google.com/og.jpg',
-    description: 'og用の説明文が入ります',
-    title: 'サイトの名前が入ります'
+    siteName: 'og用のサイトタイトル',
+    description: 'og用の説明',
+    url: 'https://github.com/diwao/myweb',
+    image: ''
   }
 };
 
@@ -23,21 +23,43 @@ var settings = {
 };
 
 var path = {
-  base: 'app/src/ejs',
-  src: ['app/src/ejs/**/*.ejs', '!app/src/ejs/**/_*.ejs'],
-  dest: 'app/src/html'
+  pc: {
+    src: ['app/src/pc/ejs/**/*.ejs', '!app/src/pc/ejs/**/_*.ejs'],
+    dest: 'app/public'
+  },
+  sp: {
+    src: ['app/src/sp/ejs/**/*.ejs', '!app/src/sp/ejs/**/_*.ejs'],
+    dest: 'app/public/sp'
+  }
 };
 
 gulp.task('ejs', function(){
-  gulp.src(path.src)
+  //pc
+  gulp.src(path.pc.src)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
     .pipe(ejs(datas, settings))
-    .pipe(gulp.dest(path.dest),{base: path.base})
+    .pipe(gulp.dest(path.pc.dest))
+    .pipe(browserSync.stream())
     .pipe(notify({
-      title: 'ejsをコンパイルしました！',
+      title: 'ejs(pc)をコンパイルしました',
       message: new Date(),
       sound: 'Glass'
-    }));
+    })
+  );
+  //sp
+  gulp.src(path.sp.src)
+    .pipe(plumber({
+      errorHandler: notify.onError('Error: <%= error.message %>')
+    }))
+    .pipe(ejs(datas, settings))
+    .pipe(gulp.dest(path.sp.dest))
+    .pipe(browserSync.stream())
+    .pipe(notify({
+      title: 'ejs(sp)をコンパイルしました',
+      message: new Date(),
+      sound: 'Glass'
+    })
+  );
 });
