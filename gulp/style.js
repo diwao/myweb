@@ -12,7 +12,7 @@ var options = {
 };
 
 var autoprefixerOptions = {
-  browser: ['last 3 version', 'ie >= 6', 'Android 4.0']
+  browsers: ['last 3 version', 'ie >= 9', 'Android 4.0']
 };
 
 var path = {
