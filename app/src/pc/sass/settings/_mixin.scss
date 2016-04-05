@@ -1,15 +1,17 @@
+@charset "UTF-8";
+
 //半分のサイズを設定
 @mixin half($width, $height) {
-	width: ($width/2) + px;
-	height: ($height/2) + px;
+  height: ($height/2) + px;
+  width: ($width/2) + px;
 }
 
 @mixin full {
-	width: 100%;
-	height: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 @mixin square($size:10) {
-	width: $size + px;
-	height: $size + px;
+  height: $size + px;
+  width: $size + px;
 }
