@@ -106,6 +106,11 @@ module.exports = {
         'app/src/common/lib/howler.min.js'
       ],
       dest: 'app/public/common/js/'
+    },
+    babel: {
+      base: 'app/src/',
+      src: 'app/src/**/*.es6',
+      dest: 'app/public'
     }
   }
 };
