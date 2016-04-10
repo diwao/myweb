@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
+// settings
 @import 'settings/var';
 @import 'settings/mixin';
+
+// リセット
+@import 'settings/normalize';
+@import 'settings/reset';
+
+/* top */
+// ベース
 @import 'settings/base';
 
 //===================================
