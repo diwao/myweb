@@ -6,3 +6,6 @@ app/public/
 
 # logファイルを除外
 *.log
+
+# spriteフォルダを除外
+app/sprite/dest/

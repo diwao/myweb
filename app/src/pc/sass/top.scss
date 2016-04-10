@@ -8,6 +8,9 @@
 @import 'settings/normalize';
 @import 'settings/reset';
 
+// sprite
+@import 'sprite/sprite';
+
 /* top */
 // ベース
 @import 'settings/base';
@@ -17,4 +20,8 @@
 //===================================
 .wrap {
   font-size: $font-size-default;
+}
+
+.sprite {
+  @include sprite($sprite-sprite1);
 }

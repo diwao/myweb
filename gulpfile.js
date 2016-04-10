@@ -12,6 +12,7 @@ require('./gulp/ejs.js');
 require('./gulp/script.js');
 require('./gulp/html.js');
 require('./gulp/copy.js');
+require('./gulp/sprite.js');
 
 // チェック
 gulp.task('check',['html','eslint']);

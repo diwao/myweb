@@ -38,6 +38,18 @@ module.exports = {
       browsers: ['last 3 version', 'ie >= 9', 'Android 4.0']
     }
   },
+  // sprite
+  sprite: {
+    options: {
+      imgName: 'sprite.png',
+      cssName: '_sprite.scss',
+      imgPath: '/pc/img/sprite.png',
+      cssFormat: 'scss',
+      cssVarMap: function (sprite) {
+        sprite.name = 'sprite-' + sprite.name;
+      }
+    }
+  },
 
   // 各種パス
   path: {
@@ -67,6 +79,10 @@ module.exports = {
       watch: ['app/src/**/*.scss','!app/src/**/_*.scss']
       // watch: 'app/src/**/*.scss'
     },
+    sprite: {
+      src: 'app/sprite/img/*',
+      dest: 'app/sprite/dest/'
+    },
     copy: {
       base: 'app/src',
       src: ['app/src/**/*.png',
@@ -76,7 +92,8 @@ module.exports = {
             'app/src/**/*.php',
             // 'app/src/**/*.phar',
             // 'app/src/common/sound/*',
-            'app/src/**/*.json'
+            'app/src/**/*.json',
+            '!sprite/**/*.png'
           ],
       dest: 'app/public'
     },
