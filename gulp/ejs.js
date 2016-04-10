@@ -1,46 +1,21 @@
+// モジュール読み込み
 var gulp = require('gulp');
 var ejs = require('gulp-ejs');
 var browserSync = require('browser-sync');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
+// 設定ファイル読み込み
+var config = require('../config');
 
-var datas = {
-  title: 'サイトタイトル',
-  author: '著者名',
-  description: '説明',
-  keywords: 'キーワード',
-  favicon: '/asset/image/favicon.ico',
-  og: {
-    siteName: 'og用のサイトタイトル',
-    description: 'og用の説明',
-    url: 'https://github.com/diwao/myweb',
-    image: ''
-  }
-};
-
-var settings = {
-  ext: '.html'
-};
-
-var path = {
-  pc: {
-    src: ['app/src/pc/ejs/**/*.ejs', '!app/src/pc/ejs/**/_*.ejs'],
-    dest: 'app/public'
-  },
-  sp: {
-    src: ['app/src/sp/ejs/**/*.ejs', '!app/src/sp/ejs/**/_*.ejs'],
-    dest: 'app/public/sp'
-  }
-};
-
+// タスク
 gulp.task('ejs', function(){
   //pc
-  gulp.src(path.pc.src)
+  gulp.src(config.path.ejs.srcPC)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
-    .pipe(ejs(datas, settings))
-    .pipe(gulp.dest(path.pc.dest))
+    .pipe(ejs(config.ejs.data, config.ejs.settings))
+    .pipe(gulp.dest(config.path.ejs.destPC))
     .pipe(browserSync.stream())
     .pipe(notify({
       title: 'ejs(pc)をコンパイルしました',
@@ -49,12 +24,12 @@ gulp.task('ejs', function(){
     })
   );
   //sp
-  gulp.src(path.sp.src)
+  gulp.src(config.path.ejs.srcSP)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
-    .pipe(ejs(datas, settings))
-    .pipe(gulp.dest(path.sp.dest))
+    .pipe(ejs(config.ejs.data, config.ejs.settings))
+    .pipe(gulp.dest(config.path.ejs.destSP))
     .pipe(browserSync.stream())
     .pipe(notify({
       title: 'ejs(sp)をコンパイルしました',

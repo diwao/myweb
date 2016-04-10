@@ -1,14 +1,14 @@
+// モジュール読み込み
 var gulp = require('gulp');
 var htmlhint = require('gulp-htmlhint');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
+// 設定ファイル読み込み
+var config = require('../config');
 
-var path = {
-  src: 'app/public/**/*.html',
-};
-
+// タスク
 gulp.task('html', function(){
-  gulp.src(path.src)
+  gulp.src(config.path.html.src)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))

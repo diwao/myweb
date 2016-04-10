@@ -1,31 +1,47 @@
+// モジュール読み込み
 var gulp = require('gulp');
 var del = require('del');
 var browserSync = require('browser-sync');
+var runSequence = require('run-sequence');
+// 設定ファイル読み込み
+var config = require('./config.js');
+
+// 各タスク読み込み
 require('./gulp/style.js');
 require('./gulp/ejs.js');
 require('./gulp/script.js');
 require('./gulp/html.js');
 require('./gulp/copy.js');
 
-// クリーン
+// チェック
+gulp.task('check',['html','eslint']);
+
+// public以下のファイルを全消去
 gulp.task('clean', function() {
-  del(['app/public/*']);
+  del([config.pub + '/*']);
 });
 
 // ビルド
-gulp.task('build', ['ejs','style','script','html','copy']);
+gulp.task('build', function(){
+  runSequence(
+    'ejs',
+    'style',
+    'script',
+    'concatLib',
+    'copy',
+    'html',
+    'eslint'
+  );
+});
 
-// チェック
-gulp.task('check',['html','script']);
-
-// 監視
+// デフォルトタスク
 gulp.task('default', function(){
   browserSync.init({
     server: {
-      baseDir: './app/public/'
+      baseDir: config.pub
     }
   });
-  gulp.watch(['app/src/**/*.scss','!app/src/**/_*.scss'],['style']);
-  gulp.watch(['app/src/**/*.ejs','!app/src/**/_*.ejs'],['ejs']);
-  gulp.watch(['app/src/**/*.js'],['script']);
+  gulp.watch(config.path.style.watch, ['style']);
+  gulp.watch(config.path.ejs.watch,['ejs']);
+  // gulp.watch(['app/src/**/*.js'],['script']);
 });

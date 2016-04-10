@@ -1,18 +1,18 @@
+// モジュール読み込み
 var gulp = require('gulp');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 var eslint = require('gulp-eslint');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+// 設定ファイル読み込み
+var config = require('../config');
 
-var path = {
-  base: 'app/src/',
-  src: ['app/src/**/*.js','!app/src/**/lib/*.js'],
-  dest: 'app/public'
-};
-
-gulp.task('script', function(){
-  gulp.src(path.src)
+// タスク
+// jsの構文チェック
+gulp.task('eslint', function(){
+  gulp.src(config.path.eslint.src)
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
@@ -23,17 +23,41 @@ gulp.task('script', function(){
       if (result.errorCount !== 0) {
         return;
       }
-      gulp.src(result.filePath,{base: path.base})
-        .pipe(rename({
-          suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest(path.dest));
     }))
     .pipe(notify({
       title: 'eslintを実行しました！',
       message: new Date(),
       sound: 'Glass'
     })
+  );
+});
+
+// jsファイルをmin化
+gulp.task('script', function(){
+  gulp.src(config.path.script.src,{base: config.path.script.base})
+    .pipe(plumber({
+      errorHandler: notify.onError('Error: <%= error.message %>')
+    }))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest(config.path.script.dest))
+    .pipe(notify({
+      title: 'jsをminifyしました',
+      message: new Date(),
+      sound: 'Glass'
+    })
+  );
+});
+
+// ライブラリを1ファイルに結合
+gulp.task('concatLib', function(){
+  gulp.src(config.path.concatLib.src)
+    .pipe(concat('libs.js'))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(config.path.concatLib.dest)
   );
 });

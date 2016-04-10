@@ -1,13 +1,11 @@
+// モジュール読み込み
 var gulp = require('gulp');
+// 設定ファイル読み込み
+var config = require('../config');
 
-var path = {
-  base: 'app/src',
-  src: ['app/src/**/*.png','app/src/**/*.jpg','app/src/common/css/**','app/src/common/lib/**'],
-  dest: 'app/public'
-};
-
+// タスク
 gulp.task('copy', function() {
-  gulp.src(path.src,{base: path.base})
-    .pipe(gulp.dest(path.dest)
+  gulp.src(config.path.copy.src,{base: config.path.copy.base})
+    .pipe(gulp.dest(config.path.copy.dest)
   );
 });
