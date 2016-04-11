@@ -8,7 +8,7 @@ class Base {
 }
 
 class App extends Base {
-  constructor(name = 'nakajmg') {
+  constructor(name = 'diwao') {
     super(name);
   }
 }
