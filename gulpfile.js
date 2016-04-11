@@ -43,6 +43,6 @@ gulp.task('default', function(){
     }
   });
   gulp.watch(config.path.style.watch, ['style']);
-  gulp.watch(config.path.ejs.watch,['ejs']);
+  gulp.watch(config.path.ejs.watch, ['ejs']);
   // gulp.watch(['app/src/**/*.js'],['script']);
 });
