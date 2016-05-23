@@ -6,7 +6,7 @@ var eslint = require('gulp-eslint');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-var babel = require("gulp-babel");
+var babel = require('gulp-babel');
 // 設定ファイル読み込み
 var config = require('../config');
 
