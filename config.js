@@ -76,8 +76,7 @@ module.exports = {
       destPC: 'app/public/pc/css',
       srcSP: 'app/src/sp/sass/**/*.scss',
       destSP: 'app/public/sp/css',
-      watch: ['app/src/**/*.scss','!app/src/**/_*.scss']
-      // watch: 'app/src/**/*.scss'
+      watch: 'app/src/**/*.scss'
     },
     sprite: {
       src: 'app/sprite/img/*',
@@ -90,8 +89,6 @@ module.exports = {
             'app/src/**/*.gif',
             'app/src/**/*.ico',
             'app/src/**/*.php',
-            // 'app/src/**/*.phar',
-            // 'app/src/common/sound/*',
             'app/src/**/*.json',
             '!sprite/**/*.png'
           ],
@@ -107,10 +104,19 @@ module.exports = {
       ],
       dest: 'app/public/common/js/'
     },
+    optimizeScript: {
+      src: [
+        'app/src/common/js/ga.js',
+        'app/src/common/js/common.js'
+        // 'app/src/common/js/audio.js'
+      ],
+      dest: 'app/public/common/js/'
+    },
     babel: {
       base: 'app/src/',
       src: 'app/src/**/*.es6',
-      dest: 'app/public'
+      dest: 'app/public',
+      watch: 'app/src/**/*.es6'
     }
   }
 };

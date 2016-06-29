@@ -6,7 +6,6 @@ var eslint = require('gulp-eslint');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
-var babel = require('gulp-babel');
 // 設定ファイル読み込み
 var config = require('../config');
 
@@ -59,17 +58,23 @@ gulp.task('concatLib', function(){
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest(config.path.concatLib.dest)
+    .pipe(gulp.dest(config.path.concatLib.dest))
+    .pipe(notify({
+      title: 'ライブラリを結合しました',
+      message: new Date(),
+      sound: 'Glass'
+    })
   );
 });
 
-// babel
-gulp.task('babel',function(){
-  gulp.src(config.path.babel.src,{base: config.path.babel.base})
-    .pipe(plumber({
-      errorHandler: notify.onError('Error: <%= error.message %>')
+// commonのjsを1ファイルに結合してmin化
+gulp.task('optimizeScript', function(){
+  gulp.src(config.path.optimizeScript.src)
+    .pipe(concat('scripts.js'))
+    .pipe(rename({
+      suffix: '.min'
     }))
-    .pipe(babel())
-    .pipe(gulp.dest(config.path.babel.dest)
+    .pipe(uglify())
+    .pipe(gulp.dest(config.path.optimizeScript.dest)
   );
 });

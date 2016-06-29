@@ -7,12 +7,13 @@ var runSequence = require('run-sequence');
 var config = require('./config.js');
 
 // 各タスク読み込み
-require('./gulp/style.js');
-require('./gulp/ejs.js');
-require('./gulp/script.js');
-require('./gulp/html.js');
+require('./gulp/babel.js');
 require('./gulp/copy.js');
+require('./gulp/ejs.js');
+require('./gulp/html.js');
+require('./gulp/script.js');
 require('./gulp/sprite.js');
+require('./gulp/style.js');
 
 // チェック
 gulp.task('check',['html','eslint']);
@@ -27,11 +28,11 @@ gulp.task('build', function(){
   runSequence(
     'ejs',
     'style',
-    'script',
+    'eslint',
+    'babel',
     'concatLib',
     'copy',
-    'html',
-    'eslint'
+    'html'
   );
 });
 
@@ -44,5 +45,5 @@ gulp.task('default', function(){
   });
   gulp.watch(config.path.style.watch, ['style']);
   gulp.watch(config.path.ejs.watch, ['ejs']);
-  // gulp.watch(['app/src/**/*.js'],['script']);
+  gulp.watch(config.path.babel.watch, ['babel']);
 });
